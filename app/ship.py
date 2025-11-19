@@ -41,10 +41,10 @@ class Deck:
 
     @is_alive.setter
     def is_alive(self, status: bool) -> None:
-        if isinstance(status, bool):
-            self.__is_alive = status
+        if not isinstance(status, bool):
+            raise TypeError("A deck can be only alive or hit!")
 
-        raise TypeError("A deck can be only alive or hit!")
+        self.__is_alive = status
 
 
 class Ship:
@@ -76,9 +76,10 @@ class Ship:
 
     @is_drowned.setter
     def is_drowned(self, status: bool) -> None:
-        if isinstance(status, bool):
-            self.__is_drowned = status
-        raise TypeError("A ship can be only afloat or drowned!")
+        if not isinstance(status, bool):
+            raise TypeError("A ship can be only afloat or drowned!")
+
+        self.__is_drowned = status
 
     def get_deck(self, row: int, column: int) -> Deck | None:
         """
